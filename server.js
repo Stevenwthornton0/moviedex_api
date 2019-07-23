@@ -7,7 +7,11 @@ const MOVIES = require('./movies.json')
 
 const app = express();
 
-app.use(morgan('dev'));
+const morganOption = (process.env.NODE_ENV === 'production ')
+  ? 'tiny'
+  : 'common';
+
+app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
